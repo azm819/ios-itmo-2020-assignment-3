@@ -1,6 +1,7 @@
 import UIKit
 
 class TableCell: UIView {
+    var index: Int = .zero
     private let label = UILabel()
 
     override init(frame: CGRect) {
