@@ -81,6 +81,7 @@ class TableView: UIScrollView {
     private func updateCell(_ cell: TableCell, withIndex index: Int) {
         cell.index = index
         cell.frame.origin.y = CGFloat(index) * TableView.TABLE_ROW_HEIGHT
+        cell.frame = cell.frame.integral
         cell.update(text: dataSource?.tableView(self, textForRow: index) ?? "")
         cell.isHidden = index < .zero || index > totalNumberOfRows - 1
     }
