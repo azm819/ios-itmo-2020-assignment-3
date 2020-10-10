@@ -32,7 +32,7 @@ class TableViewController: UIViewController, TableViewDataSource {
         tableView?.dataSource = self
     }
 
-    override func viewWillLayoutSubviews() {
+    override func viewDidLayoutSubviews() {
         tableView?.frame = view.bounds
     }
 

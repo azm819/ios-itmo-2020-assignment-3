@@ -20,7 +20,7 @@ class TableView: UIScrollView {
     }
 
     private static let TABLE_ROW_HEIGHT: CGFloat = 40
-    private static let VISIBILITY_COEFFICIENT: CGFloat = 2
+    private static let VISIBILITY_COEFFICIENT: CGFloat = 3
 
     private var activeTableCells = [TableCell]()
     private var totalNumberOfRows: Int = .zero
@@ -44,11 +44,7 @@ class TableView: UIScrollView {
             let diffY = TableView.TABLE_ROW_HEIGHT * CGFloat(numberOfCellsToTransfer)
             totalYShift += isScrollDown ? -diffY : diffY
             if numberOfCellsToTransfer > activeTableCells.count {
-                var index: Int = Int(contentOffset.y / TableView.TABLE_ROW_HEIGHT) - activeTableCells.count / 2
-                for tableCell in activeTableCells {
-                    updateCell(tableCell, withIndex: index)
-                    index += 1
-                }
+                recountFrames()
                 return
             }
 
@@ -78,6 +74,14 @@ class TableView: UIScrollView {
         }
     }
 
+    private func recountFrames() {
+        var index: Int = Int(contentOffset.y / TableView.TABLE_ROW_HEIGHT) - activeTableCells.count / 2
+        for tableCell in activeTableCells {
+            updateCell(tableCell, withIndex: index)
+            index += 1
+        }
+    }
+
     private func updateCell(_ cell: TableCell, withIndex index: Int) {
         cell.index = index
         cell.frame.origin.y = CGFloat(index) * TableView.TABLE_ROW_HEIGHT
@@ -87,6 +91,7 @@ class TableView: UIScrollView {
     }
 
     private func update() {
+        activeTableCells.forEach({ $0.removeFromSuperview() })
         activeTableCells.removeAll()
         if let dataSource = dataSource {
             let numberOfActiveRows = Int(frame.height * TableView.VISIBILITY_COEFFICIENT / TableView.TABLE_ROW_HEIGHT)
@@ -99,13 +104,12 @@ class TableView: UIScrollView {
                                  height: TableView.TABLE_ROW_HEIGHT * CGFloat(totalNumberOfRows))
 
             let tableCellFrame = CGRect(origin: .zero, size: CGSize(width: frame.width, height: TableView.TABLE_ROW_HEIGHT))
-            for index in (-1 * numberOfActiveRows)...numberOfActiveRows {
+            for _ in 0...numberOfActiveRows {
                 let tableCell = TableCell(frame: tableCellFrame)
-                updateCell(tableCell, withIndex: index)
-
                 addSubview(tableCell)
                 activeTableCells.append(tableCell)
             }
+            recountFrames()
         } else {
             contentSize = .zero
         }

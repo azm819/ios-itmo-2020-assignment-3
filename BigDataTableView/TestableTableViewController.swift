@@ -34,7 +34,7 @@ class TestableTableViewController: UIViewController, TableViewDataSource {
         tableView?.dataSource = self
     }
 
-    override func viewWillLayoutSubviews() {
+    override func viewDidLayoutSubviews() {
         tableView?.frame = view.bounds
             .inset(by: view.safeAreaInsets)
             .insetBy(dx: 50, dy: 50)
