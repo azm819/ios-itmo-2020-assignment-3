@@ -1,6 +1,6 @@
 import UIKit
 
-class MainSceneViewControllerFactory:  SceneDelegateViewControllerFactory {
+class MainSceneViewControllerFactory: SceneDelegateViewControllerFactory {
     func createRootViewController() -> UIViewController {
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [
