@@ -41,14 +41,23 @@ class TableView: UIScrollView {
             }
 
             let isScrollDown = totalYShift > .zero
+            let diffY = TableView.TABLE_ROW_HEIGHT * CGFloat(numberOfCellsToTransfer)
+            totalYShift += isScrollDown ? -diffY : diffY
+            if numberOfCellsToTransfer > activeTableCells.count {
+                var index: Int = Int(contentOffset.y / TableView.TABLE_ROW_HEIGHT) - activeTableCells.count / 2
+                for tableCell in activeTableCells {
+                    updateCell(tableCell, withIndex: index)
+                    index += 1
+                }
+                return
+            }
+
             var index: Int
             if isScrollDown {
                 index = (activeTableCells.last?.index ?? .zero) + 1
-                totalYShift -= TableView.TABLE_ROW_HEIGHT * CGFloat(numberOfCellsToTransfer)
             }
             else {
                 index = (activeTableCells.first?.index ?? .zero) - 1
-                totalYShift += TableView.TABLE_ROW_HEIGHT * CGFloat(numberOfCellsToTransfer)
             }
             while numberOfCellsToTransfer > .zero {
                 let tableCell = isScrollDown ? activeTableCells.removeFirst() : activeTableCells.removeLast()
@@ -88,8 +97,6 @@ class TableView: UIScrollView {
             contentSize = CGSize(width: frame.width,
                                  height: TableView.TABLE_ROW_HEIGHT * CGFloat(totalNumberOfRows))
 
-            print(frame.width)
-            print(numberOfActiveRows)
             let tableCellFrame = CGRect(origin: .zero, size: CGSize(width: frame.width, height: TableView.TABLE_ROW_HEIGHT))
             for index in (-1 * numberOfActiveRows)...numberOfActiveRows {
                 let tableCell = TableCell(frame: tableCellFrame)
