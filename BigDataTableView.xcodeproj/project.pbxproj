@@ -47,9 +47,9 @@
 		32E5BD662530630D00B87BE3 = {
 			isa = PBXGroup;
 			children = (
-				32E5BD9C2530819C00B87BE3 /* README.md */,
 				32E5BD712530630D00B87BE3 /* BigDataTableView */,
 				32E5BD702530630D00B87BE3 /* Products */,
+				32E5BD9C2530819C00B87BE3 /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -65,15 +65,15 @@
 			isa = PBXGroup;
 			children = (
 				32E5BD722530630D00B87BE3 /* AppDelegate.swift */,
+				32E5BD7B2530630D00B87BE3 /* Assets.xcassets */,
+				32E5BD802530630D00B87BE3 /* Info.plist */,
+				32E5BD7D2530630D00B87BE3 /* LaunchScreen.storyboard */,
 				32E5BD992530812900B87BE3 /* MainSceneViewControllerFactory.swift */,
 				32E5BD742530630D00B87BE3 /* SceneDelegate.swift */,
-				32E5BD9025307E4600B87BE3 /* TableViewController.swift */,
-				32E5BD762530630D00B87BE3 /* TestableTableViewController.swift */,
 				32E5BD9325307E6C00B87BE3 /* TableCell.swift */,
 				32E5BD9625307E9200B87BE3 /* TableView.swift */,
-				32E5BD7B2530630D00B87BE3 /* Assets.xcassets */,
-				32E5BD7D2530630D00B87BE3 /* LaunchScreen.storyboard */,
-				32E5BD802530630D00B87BE3 /* Info.plist */,
+				32E5BD9025307E4600B87BE3 /* TableViewController.swift */,
+				32E5BD762530630D00B87BE3 /* TestableTableViewController.swift */,
 			);
 			path = BigDataTableView;
 			sourceTree = "<group>";
@@ -135,8 +135,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32E5BD7F2530630D00B87BE3 /* LaunchScreen.storyboard in Resources */,
 				32E5BD7C2530630D00B87BE3 /* Assets.xcassets in Resources */,
+				32E5BD7F2530630D00B87BE3 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,13 +147,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32E5BD9425307E6C00B87BE3 /* TableCell.swift in Sources */,
-				32E5BD9A2530812900B87BE3 /* MainSceneViewControllerFactory.swift in Sources */,
-				32E5BD9725307E9200B87BE3 /* TableView.swift in Sources */,
-				32E5BD772530630D00B87BE3 /* TestableTableViewController.swift in Sources */,
 				32E5BD732530630D00B87BE3 /* AppDelegate.swift in Sources */,
+				32E5BD9A2530812900B87BE3 /* MainSceneViewControllerFactory.swift in Sources */,
 				32E5BD752530630D00B87BE3 /* SceneDelegate.swift in Sources */,
+				32E5BD9425307E6C00B87BE3 /* TableCell.swift in Sources */,
+				32E5BD9725307E9200B87BE3 /* TableView.swift in Sources */,
 				32E5BD9125307E4600B87BE3 /* TableViewController.swift in Sources */,
+				32E5BD772530630D00B87BE3 /* TestableTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
