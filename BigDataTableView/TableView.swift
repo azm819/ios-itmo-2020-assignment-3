@@ -6,16 +6,9 @@ protocol TableViewDataSource: AnyObject {
 }
 
 class TableView: UIScrollView {
-    override var alwaysBounceVertical: Bool {
-        get {
-            return false
-        }
-        set { }
-    }
-
     override var frame: CGRect {
         didSet {
-            update()
+            updateData()
         }
     }
 
@@ -28,7 +21,7 @@ class TableView: UIScrollView {
 
     weak var dataSource: TableViewDataSource? {
         didSet {
-            update()
+            updateData()
         }
     }
 
@@ -90,7 +83,7 @@ class TableView: UIScrollView {
         cell.isHidden = index < .zero || index > totalNumberOfRows - 1
     }
 
-    private func update() {
+    private func updateData() {
         activeTableCells.forEach({ $0.removeFromSuperview() })
         activeTableCells.removeAll()
         if let dataSource = dataSource {
