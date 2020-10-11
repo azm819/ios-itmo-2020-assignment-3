@@ -6,12 +6,6 @@ protocol TableViewDataSource: AnyObject {
 }
 
 class TableView: UIScrollView {
-    override var frame: CGRect {
-        didSet {
-            updateData()
-        }
-    }
-
     private static let TABLE_ROW_HEIGHT: CGFloat = 40
     private static let VISIBILITY_COEFFICIENT: CGFloat = 3
 
@@ -20,6 +14,12 @@ class TableView: UIScrollView {
     private var totalYShift: CGFloat = .zero
 
     weak var dataSource: TableViewDataSource? {
+        didSet {
+            updateData()
+        }
+    }
+
+    override var frame: CGRect {
         didSet {
             updateData()
         }
@@ -36,7 +36,7 @@ class TableView: UIScrollView {
             let isScrollDown = totalYShift > .zero
             let diffY = TableView.TABLE_ROW_HEIGHT * CGFloat(numberOfCellsToTransfer)
             totalYShift += isScrollDown ? -diffY : diffY
-            if numberOfCellsToTransfer > activeTableCells.count {
+            guard numberOfCellsToTransfer < activeTableCells.count else {
                 recountFrames()
                 return
             }
