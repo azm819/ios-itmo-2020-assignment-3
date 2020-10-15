@@ -19,6 +19,7 @@ class TableViewController: UIViewController, TableViewDataSource {
     }
 
     override func loadView() {
+        super.loadView()
         view = UIView()
         view.backgroundColor = .secondarySystemBackground
 
@@ -33,6 +34,7 @@ class TableViewController: UIViewController, TableViewDataSource {
     }
 
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         tableView?.frame = view.bounds
     }
 

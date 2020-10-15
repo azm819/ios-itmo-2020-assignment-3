@@ -19,6 +19,7 @@ class TestableTableViewController: UIViewController, TableViewDataSource {
     }
 
     override func loadView() {
+        super.loadView()
         view = UIView()
         view.backgroundColor = .secondarySystemBackground
 
@@ -35,6 +36,7 @@ class TestableTableViewController: UIViewController, TableViewDataSource {
     }
 
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         tableView?.frame = view.bounds
             .inset(by: view.safeAreaInsets)
             .insetBy(dx: 50, dy: 50)
