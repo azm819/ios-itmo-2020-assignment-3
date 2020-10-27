@@ -84,28 +84,31 @@ class TableView: UIScrollView {
     }
 
     private func updateData() {
+        clipsToBounds = true
         activeTableCells.forEach({ $0.removeFromSuperview() })
         activeTableCells.removeAll()
-        if let dataSource = dataSource {
-            let numberOfActiveRows = Int(frame.height * TableView.VISIBILITY_COEFFICIENT / TableView.TABLE_ROW_HEIGHT)
-            guard numberOfActiveRows > .zero else {
-                return
-            }
 
-            totalNumberOfRows = dataSource.numberOfRowInTableView(self)
-            contentSize = CGSize(width: frame.width,
-                                 height: TableView.TABLE_ROW_HEIGHT * CGFloat(totalNumberOfRows))
-
-            let tableCellFrame = CGRect(origin: .zero, size: CGSize(width: frame.width, height: TableView.TABLE_ROW_HEIGHT))
-            for _ in 0...numberOfActiveRows {
-                let tableCell = TableCell(frame: tableCellFrame)
-                addSubview(tableCell)
-                activeTableCells.append(tableCell)
-            }
-            recountFrames()
-        } else {
+        guard let dataSource = dataSource else {
             contentSize = .zero
+            return
         }
+
+        let numberOfActiveRows = Int(frame.height * TableView.VISIBILITY_COEFFICIENT / TableView.TABLE_ROW_HEIGHT)
+        guard numberOfActiveRows > .zero else {
+            return
+        }
+
+        totalNumberOfRows = dataSource.numberOfRowInTableView(self)
+        contentSize = CGSize(width: frame.width,
+                             height: TableView.TABLE_ROW_HEIGHT * CGFloat(totalNumberOfRows))
+
+        let tableCellFrame = CGRect(origin: .zero, size: CGSize(width: frame.width, height: TableView.TABLE_ROW_HEIGHT))
+        for _ in 0...numberOfActiveRows {
+            let tableCell = TableCell(frame: tableCellFrame)
+            addSubview(tableCell)
+            activeTableCells.append(tableCell)
+        }
+        recountFrames()
     }
 
 }
